@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	fieldset 
+	{
+		width: 300px;
+	}
+</style>
+<script type="text/javascript">
+	function send_go(f) 
+	{
+		f.submit();
+	}
+	function send_go2(f) 
+	{
+		var s1 = f.s1.value;
+		if (s1 == "") 
+		{
+			alert("수1을 입력하세요");
+			f.s1.focus();
+			return;
+		}
+		var s2 = f.s2.value;
+		if (s2 == "") 
+		{
+			alert("수2을 입력하세요");
+			f.s2.focus();
+			return;
+		}
+		// 라디오 버튼
+		var x = document.getElementsByName("op");
+		var k = 0;
+		for (var i = 0;i < x.length; i++) 
+		{
+			if (x[i].checked) 
+			{
+				k = k+1;
+			}
+		}
+		if (k == 0) 
+		{
+			alert("연산자를 선택 하세요.");
+			return;
+		}
+		
+		f.action="/01_servlet/Ex07";
+		f.submit();
+	}
+</script>
+</head>
+<body>
+	
+	<form action="/01_servlet/Ex07" method="post">
+		<fieldset>
+			<legend>HTML 계산기</legend>
+			<p> 수1 : <input type="number" name="s1" required></p>
+			<p> 수2 : <input type="number" name="s2" required></p>
+			<p> 연산자 : 
+				<input type="radio" name="op" value="+" required>+
+				<input type="radio" name="op" value="-" required>-
+				<input type="radio" name="op" value="*" required>*
+				<input type="radio" name="op" value="/" required>/
+			</p>
+			<input type="submit" value="결과보기">
+		</fieldset>
+	</form>
+	<hr>
+	
+	<form action="/01_servlet/Ex07" method="post" onsubmit="send_go(this.form)">
+		<fieldset>
+			<legend>JavaScript 계산기</legend>
+			<p> 수1 : <input type="number" name="s1" required></p>
+			<p> 수2 : <input type="number" name="s2" required></p>
+			<p> 연산자 : 
+				<input type="radio" name="op" value="+" required>+
+				<input type="radio" name="op" value="-" required>-
+				<input type="radio" name="op" value="*" required>*
+				<input type="radio" name="op" value="/" required>/
+			</p>
+			<input type="submit" value="결과보기" >
+			<!-- <input type="button" value="결과보기" onclick="send_go(this.form)"> -->
+		</fieldset>
+	</form>
+	
+	<form method="post">
+		<fieldset>
+			<legend>JavaScript 계산기</legend>
+			<p> 수1 : <input type="number" name="s1" ></p>
+			<p> 수2 : <input type="number" name="s2" ></p>
+			<p> 연산자 : 
+				<input type="radio" name="op" value="+" >+
+				<input type="radio" name="op" value="-" >-
+				<input type="radio" name="op" value="*" >*
+				<input type="radio" name="op" value="/" >/
+			</p>
+			<input type="button" value="결과보기" onclick="send_go2(this.form)">
+		</fieldset>
+	</form>
+	
+</body>
+</html>
+
+
+
